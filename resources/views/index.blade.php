@@ -29,13 +29,13 @@
             <div class="follower-row-wrapper">
                 <div class="container">
                     <div class="row py-4" id="app">
-                        <div class="col-4 text-color-youtube">
+                        <div class="col-sm-4 text-color-youtube">
                             <youtube-component></youtube-component>
                         </div>
-                        <div class="col-4 text-color-twitter">
+                        <div class="col-sm-4 text-color-twitter">
                             <twitter-component></twitter-component>
                         </div>
-                        <div class="col-4 text-color-instagram">
+                        <div class="col-sm-4 text-color-instagram">
                             <instagram-component></instagram-component>
                         </div>
                     </div>
