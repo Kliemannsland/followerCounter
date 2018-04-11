@@ -1,0 +1,47 @@
+body {
+    display: table;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    background-color: #f5b2bb;
+    font-family: 'Vollkorn', 'serif';
+}
+
+body>.content-wrapper {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.text-color-youtube {
+    color: #ff0000;
+}
+
+.text-color-twitter {
+    color: #00aced;
+}
+
+.text-color-instagram {
+    color: white;
+}
+
+.kliemannsland-logo {
+    width: 200px;
+    height: auto;
+}
+
+.follower-row-wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.follower-count {
+    font-size: 2.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 181px;
+    /* color: white; */
+}
