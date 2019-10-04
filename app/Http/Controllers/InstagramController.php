@@ -15,35 +15,28 @@ class InstagramController extends Controller
             $count = 0;
             $guzzle = new Client();
 
-            $response = $guzzle->request('GET',
-                'https://www.instagram.com/web/search/topsearch/', [
-                    'query' => [
-                        'query' => config('social.instagram_id')
-                    ]
-                ]);
-
+            $response = $guzzle->request('GET', 'https://www.instagram.com/' . config('social.instagram_id') . '/?__a=1');
             $content = $response->getBody()->getContents();
 
-            if (strlen($content) > 0) {
-                $arr = json_decode($content, true);
-                if (isset($arr['users']) && !empty($arr['users'])) {
-                    $users = $arr['users'];
-
-                    foreach ($users AS $v) {
-                        if (isset($v['user'])) {
-                            $user = $v['user'];
-                            if (isset($user['username']) && $user['username'] == config('social.instagram_id')) {
-                                if (isset($user['follower_count'])) {
-                                    $count = (int) $user['follower_count'];
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+            if (empty($content)) {
+                return $count;
             }
 
-            return $count;
+            $arr = json_decode($content, true);
+            if (empty($arr)) {
+                return $count;
+            }
+
+            if (empty($arr['graphql']['user']['edge_followed_by']['count'])) {
+                return $count;
+            }
+
+            $followerCount = $arr['graphql']['user']['edge_followed_by']['count'];
+            if (!is_numeric($followerCount)) {
+                return $count;
+            }
+
+            return (int)$followerCount;
         });
 
         return $follower;
